@@ -68,7 +68,7 @@ variables:
 #                                                                       #
 #########################################################################
     serviceConnectionName:
-      'iac-lab'
+      'Test service connection'
 # -- Terraform Version
 # -- Support 0.15.1 and above
     terraformVersion:
