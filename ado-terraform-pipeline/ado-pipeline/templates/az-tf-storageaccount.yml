@@ -1,0 +1,38 @@
+parameters:
+# Required Parameters
+- name: serviceConnection
+  default: ''
+  type: string
+
+- name: resourceGroupName
+  default: ''
+  type: string
+
+- name: regionName
+  default: ''
+  type: string
+
+- name: storageAccountName
+  default: ''
+  type: string
+
+- name: containerName
+  default: ''
+  type: string
+
+steps:
+- task: 
+    AzureCLI@2
+  displayName: 
+    State File Storage Account
+  inputs:
+    azureSubscription: 
+      ${{ parameters.serviceConnection }}   
+    scriptType: 
+      pscore
+    scriptPath: 
+      '$(Agent.BuildDirectory)/build/ado-pipeline/templates/az-tf-storageaccount.ps1'
+    workingDirectory: 
+      '$(Agent.BuildDirectory)/build/ado-pipeline/templates/'
+    arguments:
+      '-ResourceGroupName ${{ parameters.resourceGroupName }} -Location ${{ parameters.regionName }} -StorageAccountName ${{ parameters.storageAccountName }} -ContainerName ${{ parameters.containerName }}'
